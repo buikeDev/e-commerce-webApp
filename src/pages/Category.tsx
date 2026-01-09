@@ -11,8 +11,15 @@ import { Button } from "@/components/ui/button";
 const Category = () => {
   const { category } = useParams<{ category: string }>();
 
-  // Convert URL slug to match category in data (e.g., "circuit-breakers" -> "circuit breakers")
-  const formattedCategory = category?.replace(/-/g, " ").toLowerCase();
+  // Convert URL slug to match category in data
+  // "cables-and-wiring" -> "cables & wiring"
+  // "switches-and-sockets" -> "switches & sockets"
+  // "tools-and-equipment" -> "tools & equipment"
+  // "smart-home" -> "smart home"
+  const formattedCategory = category;
+  // ?.replace(/-and-/g, " & ")
+  // .replace(/-/g, " ")
+  // .toLowerCase();
 
   // Filter products by category
   const categoryProducts = products.filter(

@@ -25,7 +25,7 @@ export const products = [
       "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
     badge: "New",
     badgeColor: "secondary",
-    category: "circuit breakers",
+    category: "circuit-breakers",
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ export const products = [
       "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=400&h=400&fit=crop",
     badge: "15% Off",
     badgeColor: "destructive",
-    category: "cables-and-wiring",
+    category: "cables-wiring",
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ export const products = [
       "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "tools-and-equipment",
+    category: "tools-equipment",
   },
   {
     id: 5,
@@ -67,7 +67,7 @@ export const products = [
       "https://images.unsplash.com/photo-1558002038-1055907df827?w=400&h=400&fit=crop",
     badge: "Sale",
     badgeColor: "destructive",
-    category: "switches-and-sockets",
+    category: "switches-sockets",
   },
   {
     id: 6,
@@ -81,7 +81,7 @@ export const products = [
       "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?w=400&h=400&fit=crop",
     badge: "Top Rated",
     badgeColor: "default",
-    category: "cables-and-wiring",
+    category: "cables-wiring",
   },
   {
     id: 7,
@@ -95,7 +95,7 @@ export const products = [
       "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&h=400&fit=crop",
     badge: "Eco",
     badgeColor: "secondary",
-    category: "apliences",
+    category: "smart-home",
   },
   {
     id: 8,
@@ -123,7 +123,7 @@ export const products = [
       "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "cables-and-wiring",
+    category: "cables-wiring",
   },
   {
     id: 10,
@@ -151,7 +151,7 @@ export const products = [
       "https://images.unsplash.com/photo-1598300050225-9b4b6b1a2d24?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "switches-and-sockets",
+    category: "switches-sockets",
   },
   {
     id: 12,
@@ -165,7 +165,7 @@ export const products = [
       "https://images.unsplash.com/photo-1581091870622-3f4c8a1b3d7a?w=400&h=400&fit=crop",
     badge: "Limited",
     badgeColor: "destructive",
-    category: "circuit breakers",
+    category: "circuit-breakers",
   },
   {
     id: 13,
@@ -179,7 +179,7 @@ export const products = [
       "https://images.unsplash.com/photo-1587502536263-3f6cfb6a5d36?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "tools-and-equipment",
+    category: "tools-equipment",
   },
   {
     id: 14,
@@ -207,7 +207,7 @@ export const products = [
       "https://images.unsplash.com/photo-1581579188698-0f1a9d0c9fb2?w=400&h=400&fit=crop",
     badge: "Bulk",
     badgeColor: "default",
-    category: "cables-and-wiring",
+    category: "cables-wiring",
   },
   {
     id: 16,
@@ -221,7 +221,7 @@ export const products = [
       "https://images.unsplash.com/photo-1593642532973-d31b6557fa68?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "switches-and-sockets",
+    category: "switches-sockets",
   },
   {
     id: 17,
@@ -235,7 +235,7 @@ export const products = [
       "https://images.unsplash.com/photo-1542223616-8b7e2b1f6b1d?w=400&h=400&fit=crop",
     badge: "Top Rated",
     badgeColor: "default",
-    category: "circuit breakers",
+    category: "circuit-breakers",
   },
   {
     id: 18,
@@ -249,7 +249,7 @@ export const products = [
       "https://images.unsplash.com/photo-1581090700227-6a14f4b0b8f1?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "tools-and-equipment",
+    category: "tools-equipment",
   },
   {
     id: 19,
@@ -291,7 +291,7 @@ export const products = [
       "https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "cables-and-wiring",
+    category: "cables-wiring",
   },
   {
     id: 22,
@@ -319,7 +319,7 @@ export const products = [
       "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "switches-and-sockets",
+    category: "switches-sockets",
   },
   {
     id: 24,
@@ -333,7 +333,7 @@ export const products = [
       "https://images.unsplash.com/photo-1584467735815-7d3f6d9e6b3f?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "circuit breakers",
+    category: "circuit-breakers",
   },
   {
     id: 25,
@@ -347,7 +347,7 @@ export const products = [
       "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&h=400&fit=crop",
     badge: "Sale",
     badgeColor: "destructive",
-    category: "apliences",
+    category: "tools-equipment",
   },
   {
     id: 26,
@@ -361,7 +361,7 @@ export const products = [
       "https://images.unsplash.com/photo-1582719478250-64f6bd9a9f6b?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "cables-and-wiring",
+    category: "cables-wiring",
   },
   {
     id: 27,
@@ -375,7 +375,7 @@ export const products = [
       "https://images.unsplash.com/photo-1542327897-8a1d15f6a6b2?w=400&h=400&fit=crop",
     badge: "New",
     badgeColor: "secondary",
-    category: "switches-and-sockets",
+    category: "switches-sockets",
   },
   {
     id: 28,
@@ -403,7 +403,7 @@ export const products = [
       "https://images.unsplash.com/photo-1581579188698-0f1a9d0c9fb2?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "tools-and-equipment",
+    category: "tools-equipment",
   },
   {
     id: 30,
@@ -431,7 +431,7 @@ export const products = [
       "https://images.unsplash.com/photo-1520252311702-6b2a7f0f0c9b?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "cables-and-wiring",
+    category: "cables-wiring",
   },
   {
     id: 32,
@@ -459,7 +459,7 @@ export const products = [
       "https://images.unsplash.com/photo-1593773656063-5d1d0f9f8c9b?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "tools-and-equipment",
+    category: "tools-equipment",
   },
   {
     id: 34,
@@ -473,7 +473,7 @@ export const products = [
       "https://images.unsplash.com/photo-1605902711622-cfb43c44367e?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "apliences",
+    category: "tools-equipment",
   },
   {
     id: 35,
@@ -515,7 +515,7 @@ export const products = [
       "https://images.unsplash.com/photo-1526406915891-5b0b1f5a9e2b?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "switches-and-sockets",
+    category: "switches-sockets",
   },
   {
     id: 38,
@@ -529,7 +529,7 @@ export const products = [
       "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=400&fit=crop",
     badge: "Top Rated",
     badgeColor: "default",
-    category: "apliences",
+    category: "tools-equipment",
   },
   {
     id: 39,
@@ -543,7 +543,7 @@ export const products = [
       "https://images.unsplash.com/photo-1510660594502-1a7e0d1f5b9e?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "tools-and-equipment",
+    category: "tools-equipment",
   },
   {
     id: 40,
@@ -585,7 +585,7 @@ export const products = [
       "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "cables-and-wiring",
+    category: "cables-wiring",
   },
   {
     id: 43,
@@ -613,7 +613,7 @@ export const products = [
       "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=400&fit=crop",
     badge: "Premium",
     badgeColor: "default",
-    category: "tools-and-equipment",
+    category: "tools-equipment",
   },
   {
     id: 45,
@@ -627,7 +627,7 @@ export const products = [
       "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "apliences",
+    category: "tools-equipment",
   },
   {
     id: 46,
@@ -669,7 +669,7 @@ export const products = [
       "https://images.unsplash.com/photo-1584467735815-7d3f6d9e6b3f?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "circuit breakers",
+    category: "circuit-breakers",
   },
   {
     id: 49,
@@ -683,7 +683,7 @@ export const products = [
       "https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
-    category: "tools-and-equipment",
+    category: "tools-equipment",
   },
   {
     id: 50,
