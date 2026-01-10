@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Search, ShoppingCart, User, Menu, X, Zap, Phone, ChevronDown } from "lucide-react";
+import {
+  Search,
+  ShoppingCart,
+  User,
+  Menu,
+  X,
+  Zap,
+  Phone,
+  ChevronDown,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -22,17 +31,31 @@ const Header = () => {
       <div className="bg-primary text-primary-foreground">
         <div className="container flex h-10 items-center justify-between text-sm">
           <div className="flex items-center gap-4">
-            <a href="tel:+1234567890" className="flex items-center gap-1.5 hover:text-accent transition-colors">
+            <a
+              href="tel:+1234567890"
+              className="flex items-center gap-1.5 hover:text-accent transition-colors"
+            >
               <Phone className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">+1 (234) 567-890</span>
             </a>
-            <span className="hidden md:inline text-primary-foreground/70">|</span>
-            <span className="hidden md:inline text-primary-foreground/70">Free shipping on orders over $99</span>
+            <span className="hidden md:inline text-primary-foreground/70">
+              |
+            </span>
+            <span className="hidden md:inline text-primary-foreground/70">
+              Free shipping on orders over $99
+            </span>
           </div>
           <div className="flex items-center gap-4">
-            <a href="/track-order" className="hover:text-accent transition-colors">Track Order</a>
+            <a
+              href="/track-order"
+              className="hover:text-accent transition-colors"
+            >
+              Track Order
+            </a>
             <span className="text-primary-foreground/70">|</span>
-            <a href="/support" className="hover:text-accent transition-colors">Support</a>
+            <a href="/support" className="hover:text-accent transition-colors">
+              Support
+            </a>
           </div>
         </div>
       </div>
@@ -46,8 +69,12 @@ const Header = () => {
               <Zap className="h-6 w-6 text-primary-foreground" />
             </div>
             <div className="hidden sm:block">
-              <span className="font-display text-xl font-bold text-foreground">ElectroHub</span>
-              <p className="text-xs text-muted-foreground -mt-0.5">Electrical Supplies</p>
+              <span className="font-display text-xl font-bold text-foreground">
+                ElectroHub
+              </span>
+              <p className="text-xs text-muted-foreground -mt-0.5">
+                Electrical Supplies
+              </p>
             </div>
           </a>
 
@@ -60,7 +87,10 @@ const Header = () => {
                 placeholder="Search products, brands, categories..."
                 className="w-full h-12 pl-11 pr-4 rounded-lg border-2 border-muted focus:border-primary transition-colors"
               />
-              <Button size="sm" className="absolute right-1.5 top-1/2 -translate-y-1/2">
+              <Button
+                size="sm"
+                className="absolute right-1.5 top-1/2 -translate-y-1/2"
+              >
                 Search
               </Button>
             </div>
@@ -85,7 +115,11 @@ const Header = () => {
               className="md:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </Button>
           </div>
         </div>
@@ -96,7 +130,7 @@ const Header = () => {
             <ul className="flex items-center gap-1">
               <li>
                 <a
-                  href="/products"
+                  href="/AllProducts"
                   className="flex items-center gap-1 px-4 py-3 text-sm font-medium text-foreground hover:text-primary hover:bg-muted transition-colors"
                 >
                   All Products
@@ -106,7 +140,10 @@ const Header = () => {
               {categories.map((category) => (
                 <li key={category}>
                   <a
-                    href={`/category/${category.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}`}
+                    href={`/category/${category
+                      .toLowerCase()
+                      .replace(/ & /g, "-")
+                      .replace(/ /g, "-")}`}
                     className="flex items-center px-4 py-3 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-muted transition-colors"
                   >
                     {category}
@@ -140,14 +177,20 @@ const Header = () => {
             </div>
             <ul className="space-y-1">
               <li>
-                <a href="/products" className="block px-4 py-3 font-medium text-foreground hover:bg-muted rounded-lg">
+                <a
+                  href="/AllProducts"
+                  className="block px-4 py-3 font-medium text-foreground hover:bg-muted rounded-lg"
+                >
                   All Products
                 </a>
               </li>
               {categories.map((category) => (
                 <li key={category}>
                   <a
-                    href={`/category/${category.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}`}
+                    href={`/category/${category
+                      .toLowerCase()
+                      .replace(/ & /g, "-")
+                      .replace(/ /g, "-")}`}
                     className="block px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg"
                   >
                     {category}
@@ -155,7 +198,10 @@ const Header = () => {
                 </li>
               ))}
               <li>
-                <a href="/deals" className="block px-4 py-3 font-bold text-accent hover:bg-accent/10 rounded-lg">
+                <a
+                  href="/deals"
+                  className="block px-4 py-3 font-bold text-accent hover:bg-accent/10 rounded-lg"
+                >
                   🔥 Hot Deals
                 </a>
               </li>

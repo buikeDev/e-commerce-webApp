@@ -11,7 +11,8 @@ const products = [
     originalPrice: 119.99,
     rating: 4.8,
     reviews: 234,
-    image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=400&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=400&h=400&fit=crop",
     badge: "Best Seller",
     badgeColor: "default",
   },
@@ -19,11 +20,12 @@ const products = [
     id: 2,
     name: "Smart WiFi Circuit Breaker",
     brand: "PowerGuard",
-    price: 156.00,
+    price: 156.0,
     originalPrice: null,
     rating: 4.9,
     reviews: 89,
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
     badge: "New",
     badgeColor: "secondary",
   },
@@ -31,11 +33,12 @@ const products = [
     id: 3,
     name: "Premium Copper Wire Bundle",
     brand: "CableMaster",
-    price: 245.50,
-    originalPrice: 289.00,
+    price: 245.5,
+    originalPrice: 289.0,
     rating: 4.7,
     reviews: 156,
-    image: "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=400&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=400&h=400&fit=crop",
     badge: "15% Off",
     badgeColor: "destructive",
   },
@@ -47,7 +50,8 @@ const products = [
     originalPrice: null,
     rating: 4.6,
     reviews: 312,
-    image: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=400&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
   },
@@ -59,7 +63,8 @@ const products = [
     originalPrice: 59.99,
     rating: 4.5,
     reviews: 203,
-    image: "https://images.unsplash.com/photo-1558002038-1055907df827?w=400&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1558002038-1055907df827?w=400&h=400&fit=crop",
     badge: "Sale",
     badgeColor: "destructive",
   },
@@ -71,7 +76,8 @@ const products = [
     originalPrice: null,
     rating: 4.8,
     reviews: 445,
-    image: "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?w=400&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?w=400&h=400&fit=crop",
     badge: "Top Rated",
     badgeColor: "default",
   },
@@ -79,11 +85,12 @@ const products = [
     id: 7,
     name: "Solar Panel Controller",
     brand: "SunTech",
-    price: 189.00,
-    originalPrice: 229.00,
+    price: 189.0,
+    originalPrice: 229.0,
     rating: 4.7,
     reviews: 67,
-    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&h=400&fit=crop",
     badge: "Eco",
     badgeColor: "secondary",
   },
@@ -91,11 +98,12 @@ const products = [
     id: 8,
     name: "Outdoor Wall Light Fixture",
     brand: "LightScape",
-    price: 67.50,
+    price: 67.5,
     originalPrice: null,
     rating: 4.4,
     reviews: 128,
-    image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=400&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=400&h=400&fit=crop",
     badge: null,
     badgeColor: null,
   },
@@ -115,7 +123,7 @@ const FeaturedProducts = () => {
             </p>
           </div>
           <Button variant="outline" size="lg">
-            View All Products
+            <a href="AllProducts">View All Products</a>
           </Button>
         </div>
 
@@ -148,11 +156,13 @@ const FeaturedProducts = () => {
 
               {/* Content */}
               <div className="p-5">
-                <p className="text-xs font-medium text-primary mb-1">{product.brand}</p>
+                <p className="text-xs font-medium text-primary mb-1">
+                  {product.brand}
+                </p>
                 <h3 className="font-semibold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                   {product.name}
                 </h3>
-                
+
                 {/* Rating */}
                 <div className="flex items-center gap-1 mb-3">
                   <div className="flex items-center">
