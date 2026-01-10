@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Search,
   ShoppingCart,
@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useCart } from "@/contextProvider/CartContext";
 
 const categories = [
   "Cables & Wiring",
@@ -23,7 +24,12 @@ const categories = [
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [cartCount] = useState(3);
+  const { cartItems } = useCart();
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    setCartCount(cartItems.length);
+  }, [cartItems]);
 
   return (
     <header className="sticky top-0 z-50 w-full">
@@ -102,12 +108,14 @@ const Header = () => {
               <User className="h-5 w-5" />
             </Button>
             <Button variant="ghost" size="icon" className="relative">
-              <ShoppingCart className="h-5 w-5" />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs font-bold text-accent-foreground">
-                  {cartCount}
-                </span>
-              )}
+              <a href="/cart">
+                <ShoppingCart className="h-5 w-5" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs font-bold text-accent-foreground">
+                    {cartCount}
+                  </span>
+                )}
+              </a>
             </Button>
             <Button
               variant="ghost"

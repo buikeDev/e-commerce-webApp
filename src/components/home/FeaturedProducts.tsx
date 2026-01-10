@@ -123,7 +123,7 @@ const FeaturedProducts = () => {
             </p>
           </div>
           <Button variant="outline" size="lg">
-            <a href="AllProducts">View All Products</a>
+            <a href="/AllProducts">View All Products</a>
           </Button>
         </div>
 

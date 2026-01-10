@@ -7,9 +7,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import React from "react";
+import AddToCartModal from "@/components/modals/AddToCartModal";
 
 const Category = () => {
   const { category } = useParams<{ category: string }>();
+  const [isVisible, setIsVisible] = React.useState(false);
+  const [product, setProduct] = React.useState<{
+    id: number;
+    name: string;
+    price: number;
+    image: any;
+  } | null>(null);
 
   // Convert URL slug to match category in data
   // "cables-and-wiring" -> "cables & wiring"
@@ -108,18 +117,30 @@ const Category = () => {
                   <div className="mb-4">
                     <div className="flex items-center gap-2">
                       <span className="text-lg font-bold">
-                        ${product.price.toFixed(2)}
+                        N{product.price.toFixed(2)}
                       </span>
                       {product.originalPrice && (
                         <span className="text-sm text-muted-foreground line-through">
-                          ${product.originalPrice.toFixed(2)}
+                          N{product.originalPrice.toFixed(2)}
                         </span>
                       )}
                     </div>
                   </div>
 
                   {/* Add to Cart Button */}
-                  <Button className="w-full" size="sm">
+                  <Button
+                    onClick={() => {
+                      setIsVisible(true);
+                      setProduct({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                      });
+                    }}
+                    className="w-full"
+                    size="sm"
+                  >
                     <ShoppingCart size={16} className="mr-2" />
                     Add to Cart
                   </Button>
@@ -129,6 +150,11 @@ const Category = () => {
           </div>
         </div>
       </main>
+      <AddToCartModal
+        open={isVisible}
+        onOpenChange={setIsVisible}
+        product={product}
+      />
       <Footer />
     </div>
   );
