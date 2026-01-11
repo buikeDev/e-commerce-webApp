@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { cartProp, cartItemProp } from "@/interfaces/cartPropInterface";
 
 const cartContext = createContext<cartProp | undefined>(undefined);
@@ -8,7 +8,14 @@ export const CartContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [cart, setCart] = useState<cartItemProp[]>([]);
+  const [cart, setCart] = useState<cartItemProp[]>(() => {
+    try {
+      const raw = localStorage.getItem("cart");
+      return raw ? (JSON.parse(raw) as cartItemProp[]) : [];
+    } catch (e) {
+      return [];
+    }
+  });
 
   const addToCart = (item: cartItemProp) => {
     const existingItem = cart.find((cartItem) => cartItem.id === item.id);
@@ -45,6 +52,15 @@ export const CartContextProvider = ({
   };
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } catch (e) {
+      // ignore storage errors
+      console.error(e);
+    }
+  }, [cart]);
 
   return (
     <cartContext.Provider
