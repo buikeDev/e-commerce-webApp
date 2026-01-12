@@ -96,11 +96,15 @@ export default function AddToCartModal({
           </Button>
         </div>
 
-        <DialogFooter>
+        <DialogFooter className="justify-between flex-row items-center justify-center gap-3">
+          <Button onClick={handleSave} className="px-5">
+            Save
+          </Button>
           <DialogClose asChild>
-            <Button variant="ghost">Cancel</Button>
+            <Button variant="ghost" className="px-5">
+              Cancel
+            </Button>
           </DialogClose>
-          <Button onClick={handleSave}>Save</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

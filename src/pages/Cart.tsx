@@ -31,66 +31,77 @@ const Cart = () => {
       <Header />
       <main className="flex-1 py-8">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
+          <h1 className="text-xl font-bold sm:text-2xl md:text-3xl mb-6">
+            Your Cart
+          </h1>
 
           <div className="space-y-4">
             {cartItems.map((item) => (
-              <Card key={item.id} className="flex items-center">
+              <div
+                key={item.id}
+                className="flex items-center gap-4 md:justify-between md:items-center"
+              >
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="h-28 w-28 object-cover"
+                  className="h-28 w-28 sm:h-20 sm:w-20 object-contain rounded-md "
                 />
-                <CardContent className="flex-1">
-                  <div className="flex items-center justify-between">
+
+                <div className="flex-1">
+                  <div className="flex items-center justify-between  gap-1 ">
                     <div>
-                      <h3 className="font-semibold">{item.name}</h3>
+                      <h4 className="font-semibold sm:font-normal text-sm sm:text-sm">
+                        {item.name}
+                      </h4>
                       <p className="text-muted-foreground">
                         N{item.price.toFixed(2)}
                       </p>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex md:mr-20 items-center border rounded-xl border-primary">
                       <Button
                         variant="ghost"
-                        size="icon"
+                        size="custom"
                         onClick={() =>
                           updateQuantity(item.id, item.quantity - 1)
                         }
                       >
-                        <Minus className="h-4 w-4" />
+                        <Minus className="h-2 w-2" />
                       </Button>
-                      <Input
+                      <input
+                        min={0}
                         value={item.quantity}
-                        readOnly
-                        className="w-16 text-center"
+                        className="w-5 text-center border-none bg-transparent sm:text-sm outline-none"
+                        onChange={(e) =>
+                          updateQuantity(item.id, parseInt(e.target.value))
+                        }
                       />
                       <Button
                         variant="ghost"
-                        size="icon"
+                        size="custom"
                         onClick={() =>
                           updateQuantity(item.id, item.quantity + 1)
                         }
                       >
-                        <Plus className="h-4 w-4" />
+                        <Plus className="h-2 w-2" />
                       </Button>
                     </div>
                   </div>
-                </CardContent>
+                </div>
                 <div className="pr-4">
                   <div className="flex flex-col items-end gap-2">
-                    <p className="font-semibold">
-                      N{(item.price * item.quantity).toFixed(2)}
-                    </p>
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => removeFromCart(item.id)}
                     >
-                      <Trash className="h-4 w-4 mr-2" /> Remove
+                      <Trash className="h-4 w-4" />
                     </Button>
+                    <p className="font-semibold">
+                      N{(item.price * item.quantity).toFixed(2)}
+                    </p>
                   </div>
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
 

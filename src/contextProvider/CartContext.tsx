@@ -36,10 +36,14 @@ export const CartContextProvider = ({
   };
 
   const updateQuantity = (itemId: number, quantity: number) => {
-    if (quantity <= 0) {
-      removeFromCart(itemId);
-      return;
+    if (Number.isNaN(quantity)) {
+      quantity = 0;
     }
+
+    if (quantity < 0) {
+      quantity = 1;
+    }
+
     setCart(
       cart.map((cartItem) =>
         cartItem.id === itemId ? { ...cartItem, quantity } : cartItem
