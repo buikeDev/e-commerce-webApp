@@ -1,7 +1,16 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { cartProp, cartItemProp } from "@/interfaces/cartPropInterface";
+import { PromoCode, findPromo, computeDiscount } from "@/mockData/promoCodes";
 
-const cartContext = createContext<cartProp | undefined>(undefined);
+interface CartContextType extends cartProp {
+  appliedPromo: PromoCode | null;
+  discount: number;
+  finalTotal: number;
+  applyPromo: (code: string) => { success: boolean; message: string };
+  removePromo: () => void;
+}
+
+const cartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartContextProvider = ({
   children,
@@ -12,59 +21,68 @@ export const CartContextProvider = ({
     try {
       const raw = localStorage.getItem("cart");
       return raw ? (JSON.parse(raw) as cartItemProp[]) : [];
-    } catch (e) {
+    } catch {
       return [];
     }
   });
 
-  const addToCart = (item: cartItemProp) => {
-    const existingItem = cart.find((cartItem) => cartItem.id === item.id);
-    if (existingItem) {
-      setCart(
-        cart.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
-            : cartItem
-        )
-      );
-    } else {
-      setCart([...cart, item]);
+  const [appliedPromo, setAppliedPromo] = useState<PromoCode | null>(() => {
+    try {
+      const raw = localStorage.getItem("promo");
+      return raw ? (JSON.parse(raw) as PromoCode) : null;
+    } catch {
+      return null;
     }
+  });
+
+  const addToCart = (item: cartItemProp) => {
+    setCart((prev) => {
+      const existing = prev.find((c) => c.id === item.id);
+      if (existing) {
+        return prev.map((c) =>
+          c.id === item.id ? { ...c, quantity: c.quantity + item.quantity } : c
+        );
+      }
+      return [...prev, item];
+    });
   };
-  const removeFromCart = (itemId: number) => {
-    setCart(cart.filter((cartItem) => cartItem.id !== itemId));
-  };
+
+  const removeFromCart = (itemId: number) =>
+    setCart((prev) => prev.filter((c) => c.id !== itemId));
 
   const updateQuantity = (itemId: number, quantity: number) => {
-    if (Number.isNaN(quantity)) {
-      quantity = 0;
-    }
-
-    if (quantity < 0) {
-      quantity = 1;
-    }
-
-    setCart(
-      cart.map((cartItem) =>
-        cartItem.id === itemId ? { ...cartItem, quantity } : cartItem
-      )
+    let q = Number.isNaN(quantity) ? 0 : quantity;
+    if (q < 0) q = 1;
+    setCart((prev) =>
+      prev.map((c) => (c.id === itemId ? { ...c, quantity: q } : c))
     );
   };
 
-  const clearCart = () => {
-    setCart([]);
+  const clearCart = () => setCart([]);
+
+  const applyPromo = (code: string): { success: boolean; message: string } => {
+    const promo = findPromo(code);
+    if (!promo) return { success: false, message: "Invalid promo code." };
+    setAppliedPromo(promo);
+    return { success: true, message: `"${promo.code}" applied — ${promo.description}` };
   };
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const removePromo = () => setAppliedPromo(null);
+
+  const total    = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const discount = appliedPromo ? computeDiscount(appliedPromo, total) : 0;
+  const finalTotal = Math.max(0, total - discount);
+
+  useEffect(() => {
+    try { localStorage.setItem("cart", JSON.stringify(cart)); } catch {}
+  }, [cart]);
 
   useEffect(() => {
     try {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    } catch (e) {
-      // ignore storage errors
-      console.error(e);
-    }
-  }, [cart]);
+      if (appliedPromo) localStorage.setItem("promo", JSON.stringify(appliedPromo));
+      else localStorage.removeItem("promo");
+    } catch {}
+  }, [appliedPromo]);
 
   return (
     <cartContext.Provider
@@ -75,16 +93,20 @@ export const CartContextProvider = ({
         clearCart,
         total,
         updateQuantity,
+        appliedPromo,
+        discount,
+        finalTotal,
+        applyPromo,
+        removePromo,
       }}
     >
       {children}
     </cartContext.Provider>
   );
 };
+
 export const useCart = () => {
   const context = useContext(cartContext);
-  if (!context) {
-    throw new Error("useCart must be used within a CartContextProvider");
-  }
+  if (!context) throw new Error("useCart must be used within a CartContextProvider");
   return context;
 };

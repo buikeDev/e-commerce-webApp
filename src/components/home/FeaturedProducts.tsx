@@ -1,6 +1,12 @@
 import { Star, ShoppingCart, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
+import React from "react";
+import AddToCartModal from "@/components/modals/AddToCartModal";
+import { useNavigate } from "react-router-dom";
+import { useWishlist } from "@/contextProvider/WishlistContext";
+import { useFeaturedProducts } from "@/hooks/useProducts";
 
 const products = [
   {
@@ -110,7 +116,29 @@ const products = [
 ];
 
 const FeaturedProducts = () => {
+  const navigate = useNavigate();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const { data: products = [], isLoading } = useFeaturedProducts();
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [selectedProduct, setSelectedProduct] = React.useState<{
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+  } | null>(null);
+
+  const handleAddToCart = (product: typeof products[number]) => {
+    setSelectedProduct({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+    });
+    setIsModalOpen(true);
+  };
+
   return (
+    <>
     <section className="py-20 bg-muted/50">
       <div className="container">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-14 gap-4">
@@ -128,14 +156,32 @@ const FeaturedProducts = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((product, index) => (
+          {isLoading
+            ? Array(8).fill(0).map((_, i) => (
+                <div key={i} className="bg-card rounded-2xl border border-border overflow-hidden">
+                  <Skeleton className="aspect-square w-full" />
+                  <div className="p-5 space-y-2">
+                    <Skeleton className="h-3 w-1/4" />
+                    <Skeleton className="h-4 w-3/4" />
+                    <Skeleton className="h-3 w-1/3" />
+                    <div className="flex justify-between mt-3">
+                      <Skeleton className="h-6 w-1/3" />
+                      <Skeleton className="h-9 w-9 rounded-md" />
+                    </div>
+                  </div>
+                </div>
+              ))
+            : products.map((product, index) => (
             <div
               key={product.id}
               className="group bg-card rounded-2xl border border-border shadow-card hover:shadow-card-hover transition-card overflow-hidden"
               style={{ animationDelay: `${index * 50}ms` }}
             >
               {/* Image */}
-              <div className="relative aspect-square overflow-hidden bg-muted">
+              <div
+                className="relative aspect-square overflow-hidden bg-muted cursor-pointer"
+                onClick={() => navigate(`/product/${product.id}`)}
+              >
                 <img
                   src={product.image}
                   alt={product.name}
@@ -149,8 +195,31 @@ const FeaturedProducts = () => {
                     {product.badge}
                   </Badge>
                 )}
-                <button className="absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-card/80 backdrop-blur-sm border border-border opacity-0 group-hover:opacity-100 transition-opacity hover:bg-accent hover:text-accent-foreground">
-                  <Heart className="h-4 w-4" />
+                <button
+                  className="absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-card/80 backdrop-blur-sm border border-border opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-50"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (isInWishlist(product.id)) {
+                      removeFromWishlist(product.id);
+                    } else {
+                      addToWishlist({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        originalPrice: product.originalPrice,
+                        image: product.image,
+                        brand: product.brand,
+                        rating: product.rating,
+                        category: "",
+                      });
+                    }
+                  }}
+                >
+                  <Heart
+                    className={`h-4 w-4 transition-colors ${
+                      isInWishlist(product.id) ? "fill-red-500 text-red-500" : "text-muted-foreground"
+                    }`}
+                  />
                 </button>
               </div>
 
@@ -159,7 +228,10 @@ const FeaturedProducts = () => {
                 <p className="text-xs font-medium text-primary mb-1">
                   {product.brand}
                 </p>
-                <h3 className="font-semibold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                <h3
+                  className="font-semibold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors cursor-pointer"
+                  onClick={() => navigate(`/product/${product.id}`)}
+                >
                   {product.name}
                 </h3>
 
@@ -194,7 +266,12 @@ const FeaturedProducts = () => {
                       </span>
                     )}
                   </div>
-                  <Button size="icon" variant="default" className="h-9 w-9">
+                  <Button
+                    size="icon"
+                    variant="default"
+                    className="h-9 w-9"
+                    onClick={() => handleAddToCart(product)}
+                  >
                     <ShoppingCart className="h-4 w-4" />
                   </Button>
                 </div>
@@ -202,8 +279,15 @@ const FeaturedProducts = () => {
             </div>
           ))}
         </div>
+
       </div>
     </section>
+    <AddToCartModal
+      open={isModalOpen}
+      onOpenChange={setIsModalOpen}
+      product={selectedProduct}
+    />
+    </>
   );
 };
 

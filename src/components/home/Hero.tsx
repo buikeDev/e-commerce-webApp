@@ -1,7 +1,12 @@
 import { ArrowRight, Truck, Shield, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCounterStore } from "@/storage/store";
 
 const Hero = () => {
+  const count = useCounterStore((state) => state.count);
+  const increment = useCounterStore((state) => state.increment);
+  const decrement = useCounterStore((state) => state.decrement);
+
   return (
     <section className="relative overflow-hidden bg-gradient-hero">
       {/* Background pattern */}
@@ -22,7 +27,9 @@ const Hero = () => {
               <span className="text-accent">Premium</span> Electrical Supplies
             </h1>
             <p className="text-lg text-primary-foreground/80 mb-8 max-w-lg leading-relaxed">
-              From cables to circuit breakers, find everything you need for residential, commercial, and industrial electrical work. Quality guaranteed.
+              From cables to circuit breakers, find everything you need for
+              residential, commercial, and industrial electrical work. Quality
+              guaranteed.
             </p>
             <div className="flex flex-wrap gap-4 mb-12">
               <Button variant="hero" size="xl">
@@ -42,7 +49,9 @@ const Hero = () => {
                 </div>
                 <div>
                   <p className="font-semibold text-sm">Free Shipping</p>
-                  <p className="text-xs text-primary-foreground/60">Orders $99+</p>
+                  <p className="text-xs text-primary-foreground/60">
+                    Orders $99+
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -51,7 +60,11 @@ const Hero = () => {
                 </div>
                 <div>
                   <p className="font-semibold text-sm">2 Year Warranty</p>
-                  <p className="text-xs text-primary-foreground/60">On all products</p>
+                  <p className="text-xs text-primary-foreground/60">
+                    On all products {count}
+                  </p>
+                  <button onClick={increment}>increase</button>
+                  <button onClick={decrement}>decrease</button>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -60,7 +73,9 @@ const Hero = () => {
                 </div>
                 <div>
                   <p className="font-semibold text-sm">24/7 Support</p>
-                  <p className="text-xs text-primary-foreground/60">Expert help</p>
+                  <p className="text-xs text-primary-foreground/60">
+                    Expert help
+                  </p>
                 </div>
               </div>
             </div>
